@@ -16,14 +16,12 @@ public class UserService {
     private final CouponService couponService;
     private final CouponRepository couponRepository;
 
-    @Transactional(readOnly = true)
     public List<CouponDTO> getPlayedCoupons(Long userId) {
         return couponRepository.findAllByUserId(userId).stream()
                 .map(CouponDTO::mapToCouponDTO)
                 .collect(Collectors.toList());
     }
 
-    @Transactional
     public List<CouponDTO> playCoupons(Long userId, List<Long> couponIds) {
 
         /**
@@ -37,7 +35,6 @@ public class UserService {
         return coupons;
     }
 
-    @Transactional
     public CouponDTO cancelCoupon(Long userId, Long couponId) {
         /**
          * TODO : Implement cancel coupon

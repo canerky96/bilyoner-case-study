@@ -35,7 +35,6 @@ public class EventService {
 				});
 	}
 
-	@Transactional
 	public EventDTO createEvent(EventDTO eventRequest) {
 
 		Event createdEvent = eventRepository.save(Event.builder()

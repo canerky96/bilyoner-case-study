@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class BalanceService {
 
-    @Transactional
     public BalanceApiResponse updateBalance(BalanceApiRequest balanceApiRequest) {
         /**
          TODO : Implement update balance

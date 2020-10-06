@@ -19,7 +19,6 @@ public class CouponService {
 
     private final HazelcastInstance hazelcastInstance;
 
-    @Transactional
     public List<CouponDTO> getAllCouponByCouponStatus(CouponStatus couponStatus) {
         /**
          * TODO : Implement get coupons logic
@@ -27,7 +26,6 @@ public class CouponService {
         return null;
     }
 
-    @Transactional
     public CouponDTO createCoupon(CouponCreateRequest couponCreateRequest) {
 
         /**
