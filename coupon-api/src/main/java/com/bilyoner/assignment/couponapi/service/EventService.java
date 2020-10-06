@@ -8,7 +8,6 @@ import com.bilyoner.assignment.couponapi.model.EventDTO;
 import com.bilyoner.assignment.couponapi.repository.EventRepository;
 import com.bilyoner.assignment.couponapi.config.HazelcastCacheConfig;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.hazelcast.core.HazelcastInstance;
 import com.hazelcast.map.IMap;
