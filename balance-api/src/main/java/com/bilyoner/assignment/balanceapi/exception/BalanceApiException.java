@@ -1,8 +1,14 @@
 package com.bilyoner.assignment.balanceapi.exception;
 
-public class BalanceApiException extends BaseRuntimeException{
+import lombok.Getter;
 
-	public BalanceApiException(HttpAwareErrorCode errorCode) {
-		super(errorCode);
-	}
+@Getter
+public class BalanceApiException extends RuntimeException {
+
+    private final ErrorCodeEnum errorCode;
+
+    public BalanceApiException(ErrorCodeEnum errorCode) {
+        super();
+        this.errorCode = errorCode;
+    }
 }

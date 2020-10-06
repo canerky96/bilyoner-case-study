@@ -1,27 +1,24 @@
 package com.bilyoner.assignment.balanceapi.controller;
 
+import com.bilyoner.assignment.balanceapi.model.UpdateBalanceRequest;
+import com.bilyoner.assignment.balanceapi.service.BalanceService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import javax.validation.Valid;
 
-import com.bilyoner.assignment.balanceapi.model.ApiBaseResponse;
-import com.bilyoner.assignment.balanceapi.model.BalanceApiRequest;
-import com.bilyoner.assignment.balanceapi.model.BalanceApiResponse;
-import com.bilyoner.assignment.balanceapi.service.BalanceService;
-import org.springframework.web.bind.annotation.*;
-
-import lombok.RequiredArgsConstructor;
-
 @RestController
-@RequestMapping
+@RequestMapping(path = "/balances")
 @RequiredArgsConstructor
 public class BalanceController {
 
-	private final BalanceService balanceService;
+    private final BalanceService balanceService;
 
-	@PutMapping("/balance")
-	public ApiBaseResponse<BalanceApiResponse> updateBalance(@Valid @RequestBody BalanceApiRequest balanceApiRequest) {
-		return ApiBaseResponse.<BalanceApiResponse>builder()
-				.operationResultData(balanceService.updateBalance(balanceApiRequest))
-				.build();
-	}
-
+    @PutMapping
+    public void updateBalance(@Valid @RequestBody UpdateBalanceRequest updateBalanceRequest) {
+        balanceService.updateBalance(updateBalanceRequest);
+    }
 }
