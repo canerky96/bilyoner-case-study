@@ -1,9 +1,7 @@
 package com.bilyoner.assignment.couponapi.repository;
 
-import com.bilyoner.assignment.couponapi.entity.Event;
+import com.bilyoner.assignment.couponapi.entity.EventEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
-public interface EventRepository extends JpaRepository<Event, Long> {
-
+public interface EventRepository extends JpaRepository<EventEntity, Long> {
 }

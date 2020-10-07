@@ -2,14 +2,13 @@ package com.bilyoner.assignment.couponapi.model;
 
 import lombok.*;
 
-import java.util.List;
-
-@Getter
 @Setter
+@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CouponCreateRequest {
+public class ErrorResponse {
 
-    private List<Long> eventIds;
+    private Integer code;
+    private String message;
 }

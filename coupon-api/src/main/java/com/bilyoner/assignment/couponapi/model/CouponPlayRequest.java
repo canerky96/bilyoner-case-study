@@ -1,12 +1,8 @@
 package com.bilyoner.assignment.couponapi.model;
 
-import java.util.List;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import java.util.List;
 
 @Builder
 @NoArgsConstructor
@@ -15,5 +11,6 @@ import lombok.Setter;
 @Setter
 public class CouponPlayRequest {
 
-	private List<Long> couponIds;
+    private Long userId;
+    private List<Long> couponIds;
 }

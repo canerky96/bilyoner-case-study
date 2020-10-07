@@ -1,12 +1,10 @@
 package com.bilyoner.assignment.couponapi.service;
 
-import com.bilyoner.assignment.couponapi.config.HazelcastCacheConfig;
-import com.bilyoner.assignment.couponapi.entity.Coupon;
-import com.bilyoner.assignment.couponapi.entity.CouponStatus;
 import com.bilyoner.assignment.couponapi.model.CouponCreateRequest;
 import com.bilyoner.assignment.couponapi.model.CouponDTO;
-import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.map.IMap;
+import com.bilyoner.assignment.couponapi.model.CouponPlayRequest;
+import com.bilyoner.assignment.couponapi.model.enums.CouponStatusEnum;
+import com.bilyoner.assignment.couponapi.repository.CouponRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +14,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CouponService {
 
-    private final HazelcastInstance hazelcastInstance;
+    private final CouponRepository couponRepository;
 
-    public List<CouponDTO> getAllCouponByCouponStatus(CouponStatus couponStatus) {
+    public List<CouponDTO> getAllCouponsByCouponStatus(CouponStatusEnum couponStatus) {
         /**
          * TODO : Implement get coupons logic
          */
@@ -30,22 +28,26 @@ public class CouponService {
         /**
          * TODO : Implement create coupon logic
          */
-
-        Coupon createdCoupon = null;
-        CouponDTO response = null;
-
-        // updating in-memory cache
-        putCoupon(response.getId(), response);
-
-        return response;
+        return null;
     }
 
-    public CouponDTO putCoupon(Long key, CouponDTO coupon) {
-        // evict list
-        hazelcastInstance.getMap(HazelcastCacheConfig.COUPONS_BY_STATUS).evictAll();
+    public List<CouponDTO> playCoupons(CouponPlayRequest couponPlayRequest) {
 
-        IMap<Long, CouponDTO> map = hazelcastInstance.getMap(HazelcastCacheConfig.COUPONS);
-        return map.put(key, coupon);
+        /**
+         * TODO : Implement play coupons
+         */
+        return null;
     }
 
+    public CouponDTO cancelCoupon(Long couponId) {
+        /**
+         * TODO : Implement cancel coupon
+         */
+        return null;
+    }
+
+    public List<CouponDTO> getPlayedCoupons(Long userId) {
+        //todo implement get user played coupons
+        return null;
+    }
 }
