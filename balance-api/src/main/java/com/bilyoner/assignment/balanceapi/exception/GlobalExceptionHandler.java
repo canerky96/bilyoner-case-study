@@ -5,5 +5,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    //todo implement all possible exception handlers
+    /**
+     * TODO : Implement all possible exception handlers
+     */
 }

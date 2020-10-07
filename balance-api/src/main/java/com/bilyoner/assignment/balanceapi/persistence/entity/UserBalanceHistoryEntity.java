@@ -18,5 +18,7 @@ public class UserBalanceHistoryEntity {
     @GeneratedValue
     private Long id;
 
-    //todo others
+    /**
+     * TODO : Implement missing parts
+     */
 }

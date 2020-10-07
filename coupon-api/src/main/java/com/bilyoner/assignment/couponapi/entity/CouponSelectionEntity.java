@@ -18,5 +18,7 @@ public class CouponSelectionEntity {
     @GeneratedValue
     private Long id;
 
-    //todo
+    /**
+     * TODO : Implement missing parts
+     */
 }

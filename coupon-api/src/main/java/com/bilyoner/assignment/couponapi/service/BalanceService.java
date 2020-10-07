@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 public class BalanceService {
 
     public void updateBalance() {
-        //todo update user balance
+        /**
+         * TODO : Implement update balance
+         */
     }
 }

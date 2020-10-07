@@ -19,7 +19,9 @@ public class EventService {
     }
 
     public List<EventDTO> getEvents() {
-        //todo implement
+        /**
+         * TODO : Implement get events
+         */
         return null;
     }
 
@@ -32,8 +34,6 @@ public class EventService {
                 .build());
 
         final EventDTO response = EventDTO.mapToEventDTO(createdEventEntity);
-
-        // todo implement cache
 
         return response;
     }

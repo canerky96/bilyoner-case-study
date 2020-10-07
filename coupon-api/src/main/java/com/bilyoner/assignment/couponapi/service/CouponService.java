@@ -47,7 +47,9 @@ public class CouponService {
     }
 
     public List<CouponDTO> getPlayedCoupons(Long userId) {
-        //todo implement get user played coupons
+        /**
+         * TODO : Implement get played coupons
+         */
         return null;
     }
 }
