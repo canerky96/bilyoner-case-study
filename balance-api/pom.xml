@@ -10,7 +10,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.bilyoner.challange</groupId>
+    <groupId>com.bilyoner.assignment</groupId>
     <name>balance-api</name>
     <artifactId>balance-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -71,11 +71,6 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 

@@ -1,10 +1,11 @@
 package com.bilyoner.assignment.couponapi.entity;
 
+import com.bilyoner.assignment.couponapi.model.enums.CouponStatusEnum;
 import lombok.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Builder
 @Setter
@@ -12,30 +13,27 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Coupon {
+public class CouponEntity {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @Version
-    private Long version;
-
     private Long userId;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private CouponStatus status;
+    private CouponStatusEnum status;
 
     @Column(nullable = false)
-    private Double cost;
-
-    @ManyToMany
-    @JoinTable(name = "COUPON_SELECTION",
-            joinColumns = @JoinColumn(name = "COUPON_ID"),
-            inverseJoinColumns = @JoinColumn(name = "EVENT_ID"))
-    private List<Event> events;
+    private BigDecimal cost;
 
     @Column(columnDefinition = "TIMESTAMP")
     private LocalDateTime playDate;
+
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime createDate;
+
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime updateDate;
 }
