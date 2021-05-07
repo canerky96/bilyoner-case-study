@@ -1,6 +1,12 @@
 package com.bilyoner.assignment.balanceapi.model;
 
-import lombok.*;
+import com.bilyoner.assignment.balanceapi.exception.BalanceApiException;
+import com.bilyoner.assignment.balanceapi.exception.ErrorCodeEnum;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -21,4 +27,12 @@ public class UpdateBalanceRequest {
     private String transactionId;
     @NotBlank
     private String transactionType;
+
+
+    public static void validate(UpdateBalanceRequest updateBalanceRequest) {
+        if (updateBalanceRequest.getAmount().compareTo(BigDecimal.ZERO) < 0) {
+            throw new BalanceApiException(ErrorCodeEnum.FIELD_VALIDATION_ERROR);
+        }
+    }
+
 }
