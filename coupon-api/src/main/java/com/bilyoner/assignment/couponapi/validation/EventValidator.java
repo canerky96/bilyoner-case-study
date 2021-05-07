@@ -1,6 +1,8 @@
 package com.bilyoner.assignment.couponapi.validation;
 
 import com.bilyoner.assignment.couponapi.entity.EventEntity;
+import com.bilyoner.assignment.couponapi.exception.CouponApiException;
+import com.bilyoner.assignment.couponapi.exception.ErrorCodeEnum;
 import com.bilyoner.assignment.couponapi.model.enums.EventTypeEnum;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +26,7 @@ public class EventValidator {
                 .orElseThrow(NoSuchElementException::new);
 
         if (events.size() < maxMBS) {
-            // TODO throw exception
+            throw new CouponApiException(ErrorCodeEnum.FIELD_VALIDATION_ERROR);
         }
     }
 
@@ -36,7 +38,7 @@ public class EventValidator {
                 .anyMatch(event -> EventTypeEnum.FOOTBALL.equals(event.getType()));
 
         if (isTennisExists && isFootballExists) {
-            // TODO throw exception
+            throw new CouponApiException(ErrorCodeEnum.FIELD_VALIDATION_ERROR);
         }
 
     }
@@ -51,7 +53,7 @@ public class EventValidator {
                 .anyMatch(event -> now.isAfter(event.getEventDate()));
 
         if (isPassedEventExists) {
-            // TODO throw exception
+            throw new CouponApiException(ErrorCodeEnum.FIELD_VALIDATION_ERROR);
         }
     }
 

@@ -36,7 +36,7 @@ public class BalanceClientService {
                 .userId(userId)
                 .amount(amount)
                 .build();
-        return Optional.ofNullable(balanceClientEndpoint.validate(request).getBody());
+        return Optional.ofNullable(balanceClientEndpoint.validate(request));
     }
 
 }

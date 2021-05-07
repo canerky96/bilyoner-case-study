@@ -19,6 +19,6 @@ public interface BalanceClientEndpoint {
     void updateBalance(@Valid @RequestBody UpdateBalanceRequest updateBalanceRequest);
 
     @PostMapping("validate")
-    ResponseEntity<UserBalanceDTO> validate(@Validated @RequestBody UserBalanceValidateRequest validateRequest);
+    UserBalanceDTO validate(@Validated @RequestBody UserBalanceValidateRequest validateRequest);
 
 }

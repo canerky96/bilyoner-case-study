@@ -35,9 +35,7 @@ public class EventService {
                 .eventDate(eventRequest.getEventDate())
                 .build());
 
-        final EventDTO response = EventDTO.mapToEventDTO(createdEventEntity);
-
-        return response;
+        return EventDTO.mapToEventDTO(createdEventEntity);
     }
 
     public List<EventEntity> findByIdIn(Collection<Long> ids) {

@@ -4,7 +4,6 @@ import com.bilyoner.assignment.couponapi.model.CouponCreateRequest;
 import com.bilyoner.assignment.couponapi.model.CouponDTO;
 import com.bilyoner.assignment.couponapi.model.CouponPlayRequest;
 import com.bilyoner.assignment.couponapi.model.enums.CouponStatusEnum;
-import com.bilyoner.assignment.couponapi.repository.CouponRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +15,6 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CouponService {
 
-    private final CouponRepository couponRepository;
     private final CouponSelectionService couponSelectionService;
 
     public List<CouponDTO> getAllCouponsByCouponStatus(CouponStatusEnum couponStatus) {
