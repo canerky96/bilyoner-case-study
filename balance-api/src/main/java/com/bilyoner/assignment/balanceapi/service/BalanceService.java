@@ -4,14 +4,13 @@ import com.bilyoner.assignment.balanceapi.exception.BalanceApiException;
 import com.bilyoner.assignment.balanceapi.exception.ErrorCodeEnum;
 import com.bilyoner.assignment.balanceapi.model.UpdateBalanceRequest;
 import com.bilyoner.assignment.balanceapi.model.UserBalanceDTO;
+import com.bilyoner.assignment.balanceapi.model.UserBalanceValidateRequest;
 import com.bilyoner.assignment.balanceapi.persistence.entity.UserBalanceEntity;
 import com.bilyoner.assignment.balanceapi.persistence.repository.UserBalanceRepository;
 import com.bilyoner.assignment.balanceapi.validator.UserBalanceValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.math.BigDecimal;
 
 @Service
 @RequiredArgsConstructor
@@ -24,20 +23,22 @@ public class BalanceService {
     @Transactional(rollbackFor = Exception.class)
     public void updateBalance(UpdateBalanceRequest updateBalanceRequest) {
 
-        UpdateBalanceRequest.validate(updateBalanceRequest);
+        UserBalanceEntity userBalance = getByUserId(updateBalanceRequest.getUserId());
 
-        UserBalanceEntity userBalance = userBalanceRepository
-                .findByUserId(updateBalanceRequest.getUserId())
-                .orElseThrow(() -> new BalanceApiException(ErrorCodeEnum.CONTENT_NOT_FOUND_ERROR));
-        userBalanceValidator.validate(userBalance);
-
+        userBalanceValidator.validate(userBalance, updateBalanceRequest.getAmount());
         updateBalance(userBalance, updateBalanceRequest);
+
         userBalanceHistoryService.updateHistory(updateBalanceRequest);
     }
 
-    public UserBalanceDTO getByUserId(Long userId) {
+    public UserBalanceDTO validate(UserBalanceValidateRequest validateRequest) {
+        UserBalanceEntity userBalance = getByUserId(validateRequest.getUserId());
+        userBalanceValidator.validate(userBalance, validateRequest.getAmount());
+        return UserBalanceDTO.mapToUserBalanceDTO(userBalance);
+    }
+
+    private UserBalanceEntity getByUserId(Long userId) {
         return userBalanceRepository.findByUserId(userId)
-                .map(UserBalanceDTO::mapToUserBalanceDTO)
                 .orElseThrow(() -> new BalanceApiException(ErrorCodeEnum.CONTENT_NOT_FOUND_ERROR));
     }
 
@@ -49,11 +50,6 @@ public class BalanceService {
             userBalance.setAmount(userBalance.getAmount().add(updateBalanceRequest.getAmount()));
         }
 
-        if (updateBalanceRequest.getAmount().compareTo(BigDecimal.ZERO) < 0) {
-            throw new BalanceApiException(ErrorCodeEnum.INSUFFICIENT_BALANCE);
-        }
-
         userBalanceRepository.save(userBalance);
     }
-
 }

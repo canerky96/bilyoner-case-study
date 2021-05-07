@@ -10,14 +10,14 @@ import java.math.BigDecimal;
 @Service
 public class UserBalanceValidator {
 
-    public void validate(UserBalanceEntity userBalance) {
-        validateAmount(userBalance);
+    public void validate(UserBalanceEntity userBalance, BigDecimal amount) {
+        validateAmount(userBalance, amount);
     }
 
-    private void validateAmount(UserBalanceEntity userBalance) {
+    private void validateAmount(UserBalanceEntity userBalance, BigDecimal amount) {
 
-        if (userBalance.getAmount().compareTo(BigDecimal.ZERO) < 0) {
-            throw new BalanceApiException(ErrorCodeEnum.FIELD_VALIDATION_ERROR);
+        if (userBalance.getAmount().compareTo(amount) < 0) {
+            throw new BalanceApiException(ErrorCodeEnum.INSUFFICIENT_BALANCE);
         }
 
     }
