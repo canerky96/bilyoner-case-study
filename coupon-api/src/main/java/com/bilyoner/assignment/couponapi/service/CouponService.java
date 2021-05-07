@@ -1,6 +1,5 @@
 package com.bilyoner.assignment.couponapi.service;
 
-import com.bilyoner.assignment.couponapi.entity.CouponEntity;
 import com.bilyoner.assignment.couponapi.model.CouponCreateRequest;
 import com.bilyoner.assignment.couponapi.model.CouponDTO;
 import com.bilyoner.assignment.couponapi.model.CouponPlayRequest;
@@ -10,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,11 +39,7 @@ public class CouponService {
     }
 
     public CouponDTO cancelCoupon(Long couponId) {
-        /**
-         * TODO : Implement cancel coupon
-         */
-        // TODO bütçe güncelle
-        return null;
+        return CouponDTO.mapToEventDTO(couponSelectionService.cancelCoupon(couponId));
     }
 
     public List<CouponDTO> getPlayedCoupons(Long userId) {

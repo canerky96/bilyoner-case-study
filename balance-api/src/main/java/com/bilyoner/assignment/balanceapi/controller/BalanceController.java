@@ -28,7 +28,7 @@ public class BalanceController {
     }
 
     @PostMapping("validate")
-    public ResponseEntity<UserBalanceDTO> getByUserId(
+    public ResponseEntity<UserBalanceDTO> validate(
             @Validated @RequestBody UserBalanceValidateRequest validateRequest) {
         return ResponseEntity.ok(balanceService.validate(validateRequest));
     }
