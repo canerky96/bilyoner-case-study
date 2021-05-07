@@ -26,7 +26,9 @@ public class BalanceService {
 
         UserBalanceEntity userBalance = getByUserId(updateBalanceRequest.getUserId());
 
-        userBalanceValidator.validate(userBalance, updateBalanceRequest.getAmount());
+        if (TransactionType.WITHDRAW.equals(updateBalanceRequest.getTransactionType())) {
+            userBalanceValidator.validate(userBalance, updateBalanceRequest.getAmount());
+        }
         updateBalance(userBalance, updateBalanceRequest);
 
         userBalanceHistoryService.updateHistory(updateBalanceRequest);
