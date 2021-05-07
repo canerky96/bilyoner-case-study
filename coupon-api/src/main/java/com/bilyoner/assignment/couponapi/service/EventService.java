@@ -6,7 +6,9 @@ import com.bilyoner.assignment.couponapi.repository.EventRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -19,10 +21,10 @@ public class EventService {
     }
 
     public List<EventDTO> getEvents() {
-        /**
-         * TODO : Implement get events
-         */
-        return null;
+        return eventRepository.findAll()
+                .stream()
+                .map(EventDTO::mapToEventDTO)
+                .collect(Collectors.toList());
     }
 
     public EventDTO createEvent(EventDTO eventRequest) {
@@ -37,4 +39,9 @@ public class EventService {
 
         return response;
     }
+
+    public List<EventEntity> findByIdIn(Collection<Long> ids) {
+        return eventRepository.findByIdIn(ids);
+    }
+
 }

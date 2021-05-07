@@ -10,11 +10,8 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("api/event")
 public class EventController {
-
-    /**
-     * TODO : Implement missing parts
-     */
 
     private final EventService eventService;
 
@@ -27,8 +24,4 @@ public class EventController {
     public EventDTO createEvent(@RequestBody @Valid EventDTO eventRequest) {
         return eventService.createEvent(eventRequest);
     }
-
-    /**
-     * Implement event endpoints
-     */
 }

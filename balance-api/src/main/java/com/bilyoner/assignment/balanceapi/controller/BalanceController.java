@@ -1,8 +1,12 @@
 package com.bilyoner.assignment.balanceapi.controller;
 
 import com.bilyoner.assignment.balanceapi.model.UpdateBalanceRequest;
+import com.bilyoner.assignment.balanceapi.model.UserBalanceDTO;
 import com.bilyoner.assignment.balanceapi.service.BalanceService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,4 +25,10 @@ public class BalanceController {
     public void updateBalance(@Valid @RequestBody UpdateBalanceRequest updateBalanceRequest) {
         balanceService.updateBalance(updateBalanceRequest);
     }
+
+    @GetMapping("{userId}")
+    public ResponseEntity<UserBalanceDTO> getByUserId(@PathVariable("userId") Long userId) {
+        return ResponseEntity.ok(balanceService.getByUserId(userId));
+    }
+
 }

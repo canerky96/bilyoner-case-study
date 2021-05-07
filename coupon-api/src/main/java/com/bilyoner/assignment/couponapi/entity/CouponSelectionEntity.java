@@ -1,10 +1,21 @@
 package com.bilyoner.assignment.couponapi.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import java.util.List;
 
 @Builder
 @Setter
@@ -18,7 +29,12 @@ public class CouponSelectionEntity {
     @GeneratedValue
     private Long id;
 
-    /**
-     * TODO : Implement missing parts
-     */
+    @OneToOne(targetEntity = CouponEntity.class, cascade = CascadeType.ALL)
+    private CouponEntity coupon;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "coupon_selection_event_entity",
+            joinColumns = {@JoinColumn(name = "coupon_selection_id")},
+            inverseJoinColumns = {@JoinColumn(name = "event_id")})
+    private List<EventEntity> events;
 }
