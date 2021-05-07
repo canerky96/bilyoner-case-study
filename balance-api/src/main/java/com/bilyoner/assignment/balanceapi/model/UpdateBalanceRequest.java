@@ -1,5 +1,6 @@
 package com.bilyoner.assignment.balanceapi.model;
 
+import com.bilyoner.assignment.balanceapi.model.enums.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,6 +25,6 @@ public class UpdateBalanceRequest {
     @NotBlank
     private String transactionId;
     @NotBlank
-    private String transactionType;
+    private TransactionType transactionType;
 
 }

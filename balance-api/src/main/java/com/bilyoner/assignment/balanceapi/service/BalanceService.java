@@ -5,6 +5,7 @@ import com.bilyoner.assignment.balanceapi.exception.ErrorCodeEnum;
 import com.bilyoner.assignment.balanceapi.model.UpdateBalanceRequest;
 import com.bilyoner.assignment.balanceapi.model.UserBalanceDTO;
 import com.bilyoner.assignment.balanceapi.model.UserBalanceValidateRequest;
+import com.bilyoner.assignment.balanceapi.model.enums.TransactionType;
 import com.bilyoner.assignment.balanceapi.persistence.entity.UserBalanceEntity;
 import com.bilyoner.assignment.balanceapi.persistence.repository.UserBalanceRepository;
 import com.bilyoner.assignment.balanceapi.validator.UserBalanceValidator;
@@ -44,9 +45,9 @@ public class BalanceService {
 
     private void updateBalance(UserBalanceEntity userBalance, UpdateBalanceRequest updateBalanceRequest) {
 
-        if ("WITHDRAW".equalsIgnoreCase(updateBalanceRequest.getTransactionType())) {
+        if (TransactionType.WITHDRAW.equals(updateBalanceRequest.getTransactionType())) {
             userBalance.setAmount(userBalance.getAmount().subtract(updateBalanceRequest.getAmount()));
-        } else if ("REFUND".equalsIgnoreCase(updateBalanceRequest.getTransactionType())) {
+        } else if (TransactionType.REFUND.equals(updateBalanceRequest.getTransactionType())) {
             userBalance.setAmount(userBalance.getAmount().add(updateBalanceRequest.getAmount()));
         }
 
